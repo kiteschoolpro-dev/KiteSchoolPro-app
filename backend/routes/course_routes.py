@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List
-from ..models import Course, CourseCreate, CourseType, SpotLocation
-from ..auth import get_current_user_id
-from ..database import get_database
+from models import Course, CourseCreate, CourseType, SpotLocation
+from auth import get_current_user_id
+from database import get_database
 
 router = APIRouter(prefix="/courses", tags=["courses"])
 
