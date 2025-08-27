@@ -125,14 +125,14 @@ async def seed_instructor():
         
         # Morning slots
         morning_slots = [
-            TimeSlot(start_time=time(9, 0), end_time=time(11, 0)),
-            TimeSlot(start_time=time(11, 30), end_time=time(13, 30))
+            TimeSlot(start_time="09:00", end_time="11:00"),
+            TimeSlot(start_time="11:30", end_time="13:30")
         ]
         
         # Afternoon slots  
         afternoon_slots = [
-            TimeSlot(start_time=time(14, 0), end_time=time(16, 0)),
-            TimeSlot(start_time=time(16, 30), end_time=time(18, 30))
+            TimeSlot(start_time="14:00", end_time="16:00"),
+            TimeSlot(start_time="16:30", end_time="18:30")
         ]
         
         # Create schedules for both spots
