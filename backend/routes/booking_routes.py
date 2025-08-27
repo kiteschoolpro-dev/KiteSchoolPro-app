@@ -34,7 +34,7 @@ async def check_availability(availability: AvailabilityCheck):
     for instructor in instructors:
         schedule = await db.instructor_schedules.find_one({
             "instructor_id": instructor['id'],
-            "date": availability.booking_date.isoformat(),
+            "date": availability.booking_date,  # booking_date is already a string
             "spot": availability.spot.value,
             "is_available": True
         })
