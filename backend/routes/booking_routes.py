@@ -107,7 +107,7 @@ async def create_booking(booking_data: BookingCreate, user_id: str = Depends(get
         if schedule:
             # Check if time slot is available
             slot_available = any(
-                slot['start_time'] == booking_data.time_slot.start_time.isoformat()
+                slot['start_time'] == booking_data.time_slot.start_time
                 for slot in schedule.get('available_slots', [])
             )
             
@@ -115,8 +115,8 @@ async def create_booking(booking_data: BookingCreate, user_id: str = Depends(get
                 # Check for conflicts
                 existing_booking = await db.bookings.find_one({
                     "instructor_id": instructor['id'],
-                    "booking_date": booking_data.booking_date.isoformat(),
-                    "time_slot.start_time": booking_data.time_slot.start_time.isoformat(),
+                    "booking_date": booking_data.booking_date,  # booking_date is already a string
+                    "time_slot.start_time": booking_data.time_slot.start_time,
                     "status": {"$in": ["pending", "confirmed"]}
                 })
                 
