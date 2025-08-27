@@ -27,8 +27,8 @@ async def get_dashboard_stats(user_id: str = Depends(get_current_user_id)):
     await verify_admin_access(user_id)
     db = await get_database()
     
-    today = datetime.utcnow().date()
-    month_start = today.replace(day=1)
+    today = datetime.utcnow().date().isoformat()  # Convert to string
+    month_start = today[:7] + "-01"  # Get YYYY-MM-01 format
     
     # Count today's bookings
     today_bookings = await db.bookings.count_documents({
