@@ -112,7 +112,7 @@ class Booking(BaseModel):
 
 class BookingCreate(BaseModel):
     course_id: str
-    booking_date: date
+    booking_date: str  # Store as ISO date string (YYYY-MM-DD)
     time_slot: TimeSlot
     spot: SpotLocation
     number_of_students: int
