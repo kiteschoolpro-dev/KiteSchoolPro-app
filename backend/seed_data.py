@@ -87,7 +87,7 @@ async def seed_admin_user():
         language_preference="en"
     )
     
-    admin_doc = admin.dict()
+    admin_doc = admin.model_dump()
     admin_doc['hashed_password'] = get_password_hash("kiteschool123")
     
     await db.users.insert_one(admin_doc)
