@@ -169,7 +169,7 @@ async def seed_demo_customer():
         language_preference="en"
     )
     
-    customer_doc = customer.dict()
+    customer_doc = customer.model_dump()
     customer_doc['hashed_password'] = get_password_hash("demo123")
     
     await db.users.insert_one(customer_doc)
