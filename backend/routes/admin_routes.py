@@ -1,12 +1,12 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List, Dict, Any
 from datetime import date, datetime, timedelta
-from ..models import (
+from models import (
     User, UserRole, DashboardStats, InstructorSchedule, 
     InstructorScheduleCreate, TimeSlot, SpotLocation
 )
-from ..auth import get_current_user_id
-from ..database import get_database
+from auth import get_current_user_id
+from database import get_database
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
