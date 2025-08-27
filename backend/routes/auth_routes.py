@@ -52,19 +52,36 @@ async def register(user_data: UserCreate):
 async def login(login_data: UserLogin):
     db = await get_database()
     
+    print(f"Debug: Login attempt for email: {login_data.email}")
+    
     # Find user
     user_doc = await db.users.find_one({"email": login_data.email})
+    print(f"Debug: User found: {user_doc is not None}")
+    
+    if user_doc:
+        print(f"Debug: User active: {user_doc.get('is_active', True)}")
+        hashed_password = user_doc.get('hashed_password', '')
+        print(f"Debug: Has hashed password: {bool(hashed_password)}")
+        
+        if hashed_password:
+            password_valid = verify_password(login_data.password, hashed_password)
+            print(f"Debug: Password valid: {password_valid}")
+    
     if not user_doc or not verify_password(login_data.password, user_doc.get('hashed_password', '')):
+        print("Debug: Authentication failed")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password"
         )
     
     if not user_doc.get('is_active', True):
+        print("Debug: User is inactive")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Account is inactive"
         )
+    
+    print("Debug: Authentication successful")
     
     # Create access token
     access_token_expires = timedelta(minutes=30 * 24)  # 30 days
