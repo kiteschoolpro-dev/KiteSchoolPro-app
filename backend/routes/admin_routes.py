@@ -148,8 +148,8 @@ async def get_instructor_schedules(
     schedules = await db.instructor_schedules.find({
         "instructor_id": instructor_id,
         "date": {
-            "$gte": start_date.isoformat(),
-            "$lte": end_date.isoformat()
+            "$gte": start_date,
+            "$lte": end_date
         }
     }).to_list(1000)
     
