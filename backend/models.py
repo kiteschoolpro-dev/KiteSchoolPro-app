@@ -96,7 +96,7 @@ class Booking(BaseModel):
     customer_id: str
     course_id: str
     instructor_id: Optional[str] = None
-    booking_date: date
+    booking_date: str  # Store as ISO date string (YYYY-MM-DD)
     time_slot: TimeSlot
     spot: SpotLocation
     number_of_students: int
