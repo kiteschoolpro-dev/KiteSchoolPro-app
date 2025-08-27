@@ -192,9 +192,9 @@ async def get_today_bookings(user_id: str = Depends(get_current_user_id)):
     await verify_admin_access(user_id)
     db = await get_database()
     
-    today = datetime.utcnow().date()
+    today = datetime.utcnow().date().isoformat()  # Convert to string
     bookings = await db.bookings.find({
-        "booking_date": today.isoformat(),
+        "booking_date": today,  # today is already a string
         "status": {"$in": ["confirmed", "pending"]}
     }).to_list(1000)
     
