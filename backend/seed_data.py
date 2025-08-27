@@ -112,7 +112,7 @@ async def seed_instructor():
         language_preference="de"
     )
     
-    instructor_doc = instructor.dict()
+    instructor_doc = instructor.model_dump()
     instructor_doc['hashed_password'] = get_password_hash("instructor123")
     
     await db.users.insert_one(instructor_doc)
