@@ -144,7 +144,9 @@ async def seed_instructor():
                 spot=spot
             )
             
-            await db.instructor_schedules.insert_one(schedule.dict())
+            schedule_doc = schedule.model_dump()
+            schedule_doc['date'] = schedule_date.isoformat()  # Convert date to string
+            await db.instructor_schedules.insert_one(schedule_doc)
     
     print(f"✓ Added 14 instructor schedules (7 days × 2 spots)")
 
