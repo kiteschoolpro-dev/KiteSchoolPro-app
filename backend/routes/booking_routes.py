@@ -99,7 +99,7 @@ async def create_booking(booking_data: BookingCreate, user_id: str = Depends(get
     for instructor in instructors:
         schedule = await db.instructor_schedules.find_one({
             "instructor_id": instructor['id'],
-            "date": booking_data.booking_date.isoformat(),
+            "date": booking_data.booking_date,  # booking_date is already a string
             "spot": booking_data.spot.value,
             "is_available": True
         })
