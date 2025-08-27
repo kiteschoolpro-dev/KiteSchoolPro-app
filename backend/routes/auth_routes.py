@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from datetime import timedelta
-from ..models import User, UserCreate, UserLogin, UserRole
-from ..auth import verify_password, get_password_hash, create_access_token, get_current_user_id
-from ..database import get_database
+from models import User, UserCreate, UserLogin, UserRole
+from auth import verify_password, get_password_hash, create_access_token, get_current_user_id
+from database import get_database
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
