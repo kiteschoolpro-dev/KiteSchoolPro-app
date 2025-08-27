@@ -44,7 +44,7 @@ async def check_availability(availability: AvailabilityCheck):
             for slot in schedule.get('available_slots', []):
                 existing_booking = await db.bookings.find_one({
                     "instructor_id": instructor['id'],
-                    "booking_date": availability.booking_date.isoformat(),
+                    "booking_date": availability.booking_date,  # booking_date is already a string
                     "time_slot.start_time": slot['start_time'],
                     "status": {"$in": ["pending", "confirmed"]}
                 })
