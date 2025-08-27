@@ -122,7 +122,7 @@ class BookingCreate(BaseModel):
 
 class AvailabilityCheck(BaseModel):
     course_id: str
-    booking_date: date
+    booking_date: str  # Store as ISO date string (YYYY-MM-DD)
     spot: SpotLocation
     number_of_students: int
 
