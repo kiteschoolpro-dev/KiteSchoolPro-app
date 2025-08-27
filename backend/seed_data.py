@@ -2,7 +2,7 @@
 Initial data seeding for KiteSchool Pro
 """
 import asyncio
-from datetime import datetime, date, time, timedelta
+from datetime import datetime, date, timedelta
 from database import connect_to_mongo, get_database, close_mongo_connection
 from models import Course, CourseType, SpotLocation, User, UserRole, InstructorSchedule, TimeSlot
 from auth import get_password_hash
