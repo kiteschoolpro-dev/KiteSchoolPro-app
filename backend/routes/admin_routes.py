@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List, Dict, Any
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 from models import (
     User, UserRole, DashboardStats, InstructorSchedule, 
     InstructorScheduleCreate, TimeSlot, SpotLocation
@@ -137,8 +137,8 @@ async def create_instructor_schedule(
 @router.get("/instructor-schedules/{instructor_id}")
 async def get_instructor_schedules(
     instructor_id: str,
-    start_date: date,
-    end_date: date,
+    start_date: str,
+    end_date: str,
     user_id: str = Depends(get_current_user_id)
 ):
     """Get instructor schedules for date range"""
