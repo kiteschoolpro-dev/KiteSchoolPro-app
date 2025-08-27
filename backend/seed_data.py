@@ -139,14 +139,12 @@ async def seed_instructor():
         for spot in [SpotLocation.SYLT, SpotLocation.ROMO]:
             schedule = InstructorSchedule(
                 instructor_id=instructor.id,
-                date=schedule_date,
+                date=schedule_date.isoformat(),  # Convert to string
                 available_slots=morning_slots + afternoon_slots,
                 spot=spot
             )
             
-            schedule_doc = schedule.model_dump()
-            schedule_doc['date'] = schedule_date.isoformat()  # Convert date to string
-            await db.instructor_schedules.insert_one(schedule_doc)
+            await db.instructor_schedules.insert_one(schedule.model_dump())
     
     print(f"✓ Added 14 instructor schedules (7 days × 2 spots)")
 
