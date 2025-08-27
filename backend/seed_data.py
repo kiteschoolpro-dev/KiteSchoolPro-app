@@ -65,7 +65,7 @@ async def seed_courses():
     ]
     
     for course in courses:
-        await db.courses.insert_one(course.dict())
+        await db.courses.insert_one(course.model_dump())
         print(f"✓ Added course: {course.name}")
 
 async def seed_admin_user():
