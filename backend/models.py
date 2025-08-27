@@ -148,7 +148,7 @@ class PaymentCreate(BaseModel):
 class InstructorSchedule(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     instructor_id: str
-    date: date
+    date: str  # Store as ISO date string (YYYY-MM-DD)
     available_slots: List[TimeSlot]
     spot: SpotLocation
     is_available: bool = True
@@ -156,7 +156,7 @@ class InstructorSchedule(BaseModel):
 
 class InstructorScheduleCreate(BaseModel):
     instructor_id: str
-    date: date
+    date: str  # Store as ISO date string (YYYY-MM-DD)
     available_slots: List[TimeSlot]
     spot: SpotLocation
 
