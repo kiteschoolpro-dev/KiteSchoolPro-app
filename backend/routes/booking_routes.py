@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List, Dict, Any
-from datetime import date, datetime, time, timedelta
+from datetime import datetime, timedelta
 from models import (
     Booking, BookingCreate, BookingDetails, BookingStatus, 
     AvailabilityCheck, TimeSlot, SpotLocation, User, Course
