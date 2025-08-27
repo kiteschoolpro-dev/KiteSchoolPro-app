@@ -88,8 +88,8 @@ class CourseCreate(BaseModel):
 
 # Booking Models
 class TimeSlot(BaseModel):
-    start_time: time
-    end_time: time
+    start_time: str  # Store as string (HH:MM format)
+    end_time: str    # Store as string (HH:MM format)
 
 class Booking(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
