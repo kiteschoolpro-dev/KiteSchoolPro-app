@@ -96,6 +96,12 @@ async def get_current_user(user_id: str = Depends(get_current_user_id)):
             detail="User not found"
         )
     
-    # Remove sensitive data
+    # Remove sensitive data and non-serializable fields
     user_doc.pop('hashed_password', None)
+    user_doc.pop('_id', None)  # Remove MongoDB ObjectId
+    
+    # Convert datetime to string if present
+    if 'created_at' in user_doc and hasattr(user_doc['created_at'], 'isoformat'):
+        user_doc['created_at'] = user_doc['created_at'].isoformat()
+    
     return user_doc
