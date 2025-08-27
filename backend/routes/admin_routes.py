@@ -32,14 +32,14 @@ async def get_dashboard_stats(user_id: str = Depends(get_current_user_id)):
     
     # Count today's bookings
     today_bookings = await db.bookings.count_documents({
-        "booking_date": today.isoformat(),
+        "booking_date": today,  # today is already a string
         "status": {"$in": ["confirmed", "pending"]}
     })
     
     # Calculate month revenue
     month_payments = await db.payments.find({
         "status": "paid",
-        "paid_at": {"$gte": month_start.isoformat()}
+        "paid_at": {"$gte": month_start}
     }).to_list(1000)
     month_revenue = sum(p['amount'] for p in month_payments)
     
