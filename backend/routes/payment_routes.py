@@ -2,9 +2,9 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List
 import stripe
 import os
-from ..models import Payment, PaymentCreate, PaymentStatus, Booking
-from ..auth import get_current_user_id
-from ..database import get_database
+from models import Payment, PaymentCreate, PaymentStatus, Booking
+from auth import get_current_user_id
+from database import get_database
 
 # Configure Stripe (using test keys for development)
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY", "sk_test_...")
